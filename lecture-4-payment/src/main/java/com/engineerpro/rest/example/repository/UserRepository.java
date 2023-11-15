@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.engineerpro.rest.example.model.User;
 
+import io.micrometer.core.annotation.Timed;
 import jakarta.persistence.LockModeType;
 
 @Repository

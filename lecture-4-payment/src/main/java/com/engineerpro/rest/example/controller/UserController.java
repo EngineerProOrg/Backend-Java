@@ -12,10 +12,12 @@ import com.engineerpro.rest.example.dto.GetUserBalanceRequest;
 import com.engineerpro.rest.example.dto.GetUserBalanceResponse;
 import com.engineerpro.rest.example.service.UserService;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@Timed(histogram = true)
 @RequestMapping("/users")
 public class UserController {
 

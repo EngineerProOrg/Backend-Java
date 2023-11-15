@@ -18,6 +18,7 @@ import com.engineerpro.rest.example.model.User;
 import com.engineerpro.rest.example.repository.TransactionRepository;
 import com.engineerpro.rest.example.repository.UserRepository;
 
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
