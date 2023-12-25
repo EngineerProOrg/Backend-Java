@@ -7,4 +7,5 @@ import com.engineerpro.example.redis.model.Profile;
 
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
+  Profile findOneByUserId(String userId);
 }

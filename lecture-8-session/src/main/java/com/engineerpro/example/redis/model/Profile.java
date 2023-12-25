@@ -22,7 +22,8 @@ public class Profile {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private int id;
-  int userId;
+  @Column(unique = true, name = "userId", nullable = false)
+  String userId;
   String profileImageUrl;
   String displayName;
   String username;
