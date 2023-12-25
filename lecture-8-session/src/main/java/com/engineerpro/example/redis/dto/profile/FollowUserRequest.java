@@ -1,5 +1,6 @@
 package com.engineerpro.example.redis.dto.profile;
 
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,5 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class FollowUserRequest {
-  private int userId;
+  @Positive
+  private int profileId;
 }

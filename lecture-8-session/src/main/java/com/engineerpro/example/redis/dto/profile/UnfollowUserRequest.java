@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class UnfollowUserRequest {
-  private int userId;
+  private int profileId;
 }
