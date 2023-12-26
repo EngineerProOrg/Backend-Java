@@ -2,11 +2,15 @@ package com.engineerpro.example.redis.dto.feed;
 
 import com.engineerpro.example.redis.model.Post;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Builder
-public class DeleteCommentResponse {
-  Post post;
+@AllArgsConstructor
+public class GetPostResponse {
+  private Post post;
 }

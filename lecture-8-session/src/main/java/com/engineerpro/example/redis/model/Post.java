@@ -1,7 +1,8 @@
 package com.engineerpro.example.redis.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,8 +34,8 @@ public class Post {
   private int id;
 
   @ManyToOne
-  @JoinColumn(name = "profile_id", nullable = false)
-  @JsonProperty("profile")
+  @JoinColumn(name = "created_by_id", nullable = false)
+  @JsonProperty("createdBy")
   Profile createdBy;
 
   String imageUrl;
@@ -46,5 +47,5 @@ public class Post {
   private List<Comment> comments;
 
   @ManyToMany
-  List<Profile> userLikes;
+  Set<Profile> userLikes;
 }

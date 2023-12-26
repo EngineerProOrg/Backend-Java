@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class GetUserPostResponse {
-  private List<Post> post;
+  private List<Post> posts;
 }

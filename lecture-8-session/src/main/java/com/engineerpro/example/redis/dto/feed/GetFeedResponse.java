@@ -14,5 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class GetFeedResponse {
-  private List<Post> post;
+  private List<Post> posts;
+  private int totalPage;
 }
