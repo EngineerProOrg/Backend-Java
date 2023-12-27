@@ -7,16 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.engineerpro.example.redis.dto.UserPrincipal;
+import com.engineerpro.example.redis.dto.event.LikePostEvent;
 import com.engineerpro.example.redis.dto.feed.CreatePostRequest;
+import com.engineerpro.example.redis.event.EventProducer;
 import com.engineerpro.example.redis.exception.NoPermissionException;
 import com.engineerpro.example.redis.exception.PostNotFoundException;
 import com.engineerpro.example.redis.model.Post;
 import com.engineerpro.example.redis.model.Profile;
-import com.engineerpro.example.redis.repository.CommentRepository;
 import com.engineerpro.example.redis.repository.PostRepository;
 import com.engineerpro.example.redis.service.UploadService;
 import com.engineerpro.example.redis.service.profile.ProfileService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class PostServiceImpl implements PostService {
   @Autowired
@@ -29,7 +33,7 @@ public class PostServiceImpl implements PostService {
   private PostRepository postRepository;
 
   @Autowired
-  private CommentRepository commentRepository;
+  private EventProducer eventProducer;
 
   @Override
   public Post createPost(UserPrincipal userPrincipal, CreatePostRequest request) {
@@ -38,7 +42,6 @@ public class PostServiceImpl implements PostService {
     Post post = new Post();
     post.setCaption(request.getCaption());
     post.setCreatedAt(new Date());
-    post.setCreatedBy(null);
     post.setCreatedBy(profile);
     post.setImageUrl(url);
     postRepository.save(post);
@@ -66,6 +69,8 @@ public class PostServiceImpl implements PostService {
     Post post = getPost(postId);
     post.getUserLikes().add(profile);
     postRepository.save(post);
+
+    eventProducer.sendLikePostEvent(LikePostEvent.builder().profileId(profile.getId()).postId(post.getId()).build());
     return post;
   }
 

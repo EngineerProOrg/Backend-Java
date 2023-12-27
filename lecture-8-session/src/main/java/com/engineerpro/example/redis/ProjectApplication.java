@@ -8,10 +8,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 
+import com.engineerpro.example.redis.config.MessageQueueConfig;
+import com.engineerpro.example.redis.event.EventConsumer;
 import com.engineerpro.example.redis.model.Comment;
 import com.engineerpro.example.redis.model.Post;
 import com.engineerpro.example.redis.model.Profile;
